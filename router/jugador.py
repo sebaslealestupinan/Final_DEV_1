@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from database import SessionDep
-from models import JugadorPersonal, JugadorDeportivo, JugadorCreate
+from models import JugadorPersonal, JugadorCreate
 
 router = APIRouter()
 
@@ -12,15 +12,16 @@ async def create_user(new_jugador:JugadorCreate, session:SessionDep):
     session.refresh(jugador)
     return jugador
 
-@router.get("/{user_id}", response_model=JugadorPersonal)
-async def get_one_user(user_id:int, session:SessionDep):
-    user_db = session.get(JugadorPersonal, user_id)
-    if not user_db:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user_db
+
+@router.get("/{jugador_numcam}", response_model=JugadorPersonal)
+async def get_one_jugador(jugador_numcam:int, session:SessionDep):
+    jugador_db = session.get(JugadorPersonal, jugador_numcam )
+    if not jugador_db:
+        raise HTTPException(status_code=404, detail="Jugador not found")
+    return jugador_db
 
 
 @router.get("/", response_model=list[JugadorPersonal])
-async def get_all_users(session:SessionDep):
+async def get_all_jugadores(session:SessionDep):
     users = session.query(JugadorPersonal).all()
     return users

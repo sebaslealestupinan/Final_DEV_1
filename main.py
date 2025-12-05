@@ -1,16 +1,8 @@
 from fastapi import FastAPI
-from models import JugadorPersonal
+from database import create_tables
+from router import jugador
 
-app = FastAPI(title="sigmotoa FC")
+app = FastAPI(lifespan=create_tables, title="Sigmotoa FC")
 
-
-@app.get("/")
-async def root():
-    return {"message": "sigmotoa FC data"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Bienvenido a sigmotoa FC {name}"}
-
+app.include_router(jugador.router, tags=["jugador"], prefix="/jugador")
 

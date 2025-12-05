@@ -9,11 +9,10 @@ class JugadorBase(SQLModel):
     year: int
 
 class JugadorPersonal(JugadorBase, table=True):
-    numero_cam: int
+    numero_cam: int | None = Field(default=None, primary_key=True)
     image_url: Optional[str] = None
     nacionalidad: str
 
-    partidos: List["Partido"] = Relationship(back_populates="jugador")
 
 class JugadorDeportivo(JugadorPersonal, table=True):
     altura: float
