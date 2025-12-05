@@ -10,7 +10,7 @@ class JugadorBase(SQLModel):
     status: bool | None = Field(description="User status", default=True)
 
 class Jugador(JugadorBase, table=True):
-    id: int | None = Field(default=None, primary_key=True)
+    id: Optional[int] = Field(default=None, primary_key=True)
     #nombre: str
     #year: int
     #numero_cam: int | None = Field(default=None, primary_key=True)
