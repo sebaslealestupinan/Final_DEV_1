@@ -1,5 +1,11 @@
+from typing import Optional, List
+from sqlmodel import SQLModel, Field, Relationship
+
 class Jugador():
-    pass
+    nombre: str
+    numero_cam: int
+    year: int
+    nacionalidad:str
 
 
 class Estadistica():
