@@ -1,12 +1,11 @@
 from fastapi import FastAPI, HTTPException
-from database import create_db_and_tables
-from router import jugador
+from app.router import jugador
 from contextlib import asynccontextmanager
-from models import Jugador, JugadorCreate
-from database import SessionDep
+from app.models import Jugador, JugadorCreate
+from app.database_c import SessionDep, create_db_and_tables
 
 
-app = FastAPI(lifespan=create_tables, title="Sigmotoa FC")
+app = FastAPI(lifespan=lifespan, title="Sigmotoa FC")
 
 app.include_router(jugador.router, tags=["jugador"], prefix="/jugador")
 

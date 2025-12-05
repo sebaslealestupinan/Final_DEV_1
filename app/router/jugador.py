@@ -1,6 +1,6 @@
-from database import SessionDep
+from app.database_c import SessionDep
 from fastapi import APIRouter, HTTPException,Depends
-from models import Jugador, JugadorCreate
+from app.models import Jugador, JugadorCreate
 
 
 router = APIRouter()
