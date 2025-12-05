@@ -5,37 +5,23 @@ from utils.states import States
 
 
 class JugadorBase(SQLModel):
-    nombre: str
-    year: int
+    name: str | None = Field(description="User name")
+    year: int | None = Field(description="User year")
+    status: bool | None = Field(description="User status", default=True)
 
-class JugadorPersonal(JugadorBase, table=True):
-    numero_cam: int | None = Field(default=None, primary_key=True)
-    image_url: Optional[str] = None
-    nacionalidad: str
+class Jugador(JugadorBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    #nombre: str
+    #year: int
+    #numero_cam: int | None = Field(default=None, primary_key=True)
+    #nacionalidad: str
 
-
-class JugadorDeportivo(JugadorPersonal, table=True):
-    altura: float
-    peso: float
-    pie_dominante: str
-    posicion: Position
-    year_ingreso_equipo: int
-    estado: States
 
 class JugadorCreate(JugadorBase):
     pass
-
-
-class Estadistica():
-    total_tiempo: int
-    goles_anotados: int
-    faltas: int
-    tarjetas: int
-
-
-
-class Partido():
-    fecha: str
-    resultado: str
+    #nombre:str
+    #year:int
+    #numero_cam:int
+    #nacionalidad:str
 
 
