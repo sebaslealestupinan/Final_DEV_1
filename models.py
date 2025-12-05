@@ -4,22 +4,27 @@ from utils.positions import Position
 from utils.states import States
 
 
-class JugadorPersonal(SQLModel, table=True):
+class JugadorBase(SQLModel):
     nombre: str
-    numero_cam: int
     year: int
+
+class JugadorPersonal(JugadorBase, table=True):
+    numero_cam: int
     image_url: Optional[str] = None
-    nacionalidad:str
+    nacionalidad: str
 
     partidos: List["Partido"] = Relationship(back_populates="jugador")
 
-class JugadorDeportivo(SQLModel, table=True):
+class JugadorDeportivo(JugadorPersonal, table=True):
     altura: float
     peso: float
     pie_dominante: str
     posicion: Position
     year_ingreso_equipo: int
     estado: States
+
+class JugadorCreate(JugadorBase):
+    pass
 
 
 class Estadistica():
