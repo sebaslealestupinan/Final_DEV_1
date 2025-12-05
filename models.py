@@ -9,10 +9,11 @@ class Jugador():
 
 
 class Estadistica():
-    pass
+
 
 
 class Partido():
-    pass
+    fecha: str
+    resultado: str
 
 
