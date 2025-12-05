@@ -1,5 +1,8 @@
 from typing import Optional, List
 from sqlmodel import SQLModel, Field, Relationship
+from utils.positions import Position
+from utils.states import States
+
 
 class JugadorPersonal(SQLModel, table=True):
     nombre: str
@@ -14,9 +17,9 @@ class JugadorDeportivo(SQLModel, table=True):
     altura: float
     peso: float
     pie_dominante: str
-    posicion: str
+    posicion: Position
     year_ingreso_equipo: int
-    estado: str
+    estado: States
 
 
 class Estadistica():
